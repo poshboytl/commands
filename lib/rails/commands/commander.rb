@@ -10,7 +10,7 @@ module Rails
       delegate :test, to: :unit_tester
       delegate :generate, :destroy, :update, to: :generator
 
-      attr_reader :raker, :tester, :generator
+      attr_reader :raker, :unit_tester, :generator
 
       def initialize
         @raker       = Raker.new
