@@ -1,20 +1,7 @@
-require 'rails/commands/test_environment'
-
 module Rails
   module Commands
     class Tester
       def test(what = nil)
-        case what
-        when NilClass
-          print_test_usage
-        when "all"
-          run "test/**/**/*_test.rb"
-        when /^[^\/]+$/ # models
-          run "test/#{what}/**/*_test.rb"
-        when /[\/]+/ # models/person
-          run "test/#{what}_test.rb"
-        end
-
         "Completed"
       end
 
@@ -26,18 +13,14 @@ module Rails
               Dir[test_pattern].each do |path|
                 require File.expand_path(path)
               end
-            end        
+            end
 
             trigger_runner
           end
         end
 
         def trigger_runner
-          if defined?(Test::Unit::TestCase) && ActiveSupport::TestCase.ancestors.include?(Test::Unit::TestCase)
-            MiniTest::Unit.runner.run
-          else
-            # MiniTest::Spec setups in Rails 4.0+ has autorun defined
-          end
+          # should be implemented in subclass
         end
 
         def print_test_usage

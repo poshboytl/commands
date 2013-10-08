@@ -6,15 +6,15 @@ module Rails
   module Commands
     class Commander
       delegate :rake, to: :raker
-      delegate :test, to: :tester
+      delegate :test, to: :unit_tester
       delegate :generate, :destroy, :update, to: :generator
 
       attr_reader :raker, :tester, :generator
 
       def initialize
-        @raker     = Raker.new
-        @tester    = Tester.new
-        @generator = Generator.new
+        @raker       = Raker.new
+        @unit_tester = UnitTester.new
+        @generator   = Generator.new
       end
     end
   end
