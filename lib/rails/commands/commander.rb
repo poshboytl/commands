@@ -1,5 +1,6 @@
 require 'rails/commands/raker'
 require 'rails/commands/tester'
+require 'rails/commands/unit_tester'
 require 'rails/commands/generator'
 
 module Rails
